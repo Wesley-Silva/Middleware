@@ -1,8 +1,89 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model WebAppMiddleware.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Status Code";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .error-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+        .btn-back {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .btn-back:hover {
+            background-color: #45a049;
+        }
+        .btn{
+            float: right;
+            margin-top: -38px;
+        }
+        #statusCode{
+            width: 530px;
+        }
+
+    </style>
+<div class="error-container">
+    <form asp-controller="Home" asp-action="StatusCode" method="post">
+        <div class="form-group">
+            <label for="statusCode">Selecione um status code:</label>
+            <select class="form-control" id="statusCode" name="statusCode">
+                <option value="401">401</option>
+                <option value="403">403</option>
+                <option value="404">404</option>
+                <option value="500">500</option>
+            </select> 
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+        
+        <br />
+        <div class="error-container">
+            <h3>Erro: 500</h3>
+            <p>Ocorreu um erro! Tente novamente mais tarde ou contate nosso suporte. <br />Ocorreu um erro!</p>
+        </div>        
+        <div class="error-container">
+            <h3>Erro: 404</h3>
+            <p>A página que está procurando não existe! <br />Ops! Página não encontrada.</p>
+        </div>
+        <div class="error-container">
+            <h3>Erro: 403</h3>
+            <p>Você não tem permissão para fazer isto. <br />Acesso Negado</p>
+        </div>
+        <div class="error-container">
+            <h3>Erro < > 500 e 403</h3>
+            <p>São tratados como erro 404.</p>
+        </div>        
+    </form>
 </div>
+
+
